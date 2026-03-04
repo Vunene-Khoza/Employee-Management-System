@@ -16,29 +16,34 @@ A full-stack **CRUD** application for managing employee records.
 - Basic form validation
 - Responsive design with Bootstrap
 
-- ## Technologies Used
-
-### Frontend
-- Angular 18+ (standalone components)
-- TypeScript
-- Bootstrap 5 (via CDN or npm)
-- ng-bootstrap (optional, if used)
-- RxJS / HttpClient
-
-### Backend
-- Java 17/21
-- Spring Boot 3.x
-- Spring Data JPA
-- Hibernate
-- MySQL Connector/J
-- Maven
-
-### Database
-- MySQL 8.x
-
 ## Prerequisites
 
 - Node.js 18+ & npm
 - Angular CLI (`npm install -g @angular/cli`)
 - Java 17+ & Maven
-- MySQL server (local or remote)
+
+## Setup Instructions
+
+### 1. Backend (Spring Boot)
+
+# MySQL connection settings
+spring.datasource.url=jdbc:mysql://localhost:3306/database_name?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+spring.datasource.username=root
+spring.datasource.password=your_password
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+### 2. Frontend (Angular)
+
+- Create angular-frontend
+`ng new angular-frontend`
+- Navigate to folder
+`cd .\angular-frontend\`
+-(Optional) Install Bootstrap locally
+`npm install bootstrap@5.3.8`
+-Start the Angular development server
+`ng serve`
+
