@@ -1,0 +1,52 @@
+<div class="col-md-6 offset-md-3">
+  <h3>Update Employee</h3>
+  
+  <form (ngSubmit)="onSubmit(employeeForm)" #employeeForm="ngForm">
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input
+        type="text"
+        id="firstName"
+        class="form-control"
+        required
+        [(ngModel)]="employee.firstName"
+        name="firstName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        required
+        [(ngModel)]="employee.lastName"
+        name="lastName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="emailId">Email ID:</label>
+      <input
+        type="text"
+        id="emailId"
+        class="form-control"
+        required
+        placeholder="user@gmail.com"
+        [(ngModel)]="employee.emailId"
+        (ngModelChange)="onEmailInput($event)"
+        name="emailId"
+        #emailModel="ngModel"
+      />
+      <div>
+        <small class="text-danger" *ngIf="emailError">{{ emailError }}</small>
+      </div>
+    </div>
+
+    <!-- Button should be outside the last form-group for better spacing -->
+    <button type="submit" class="btn btn-success" [disabled]="isLoading || employeeForm.invalid || !isEmailValid()">
+      {{ isLoading ? 'Submitting...' : 'Submit' }}
+    </button>
+  </form>
+</div>

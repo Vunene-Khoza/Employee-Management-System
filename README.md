@@ -36,14 +36,16 @@ spring.jpa.hibernate.ddl-auto=update
 
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
+
 ### 2. Frontend (Angular)
 
 - Create angular-frontend
 `ng new angular-frontend`
 - Navigate to folder
 `cd .\angular-frontend\`
--(Optional) Install Bootstrap locally
+- Install dependencies
+`npm install`
+- (Optional) Install Bootstrap locally
 `npm install bootstrap@5.3.8`
--Start the Angular development server
+- Start the Angular development server
 `ng serve`
-
