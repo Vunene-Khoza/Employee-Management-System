@@ -40,12 +40,21 @@ spring.jpa.properties.hibernate.format_sql=true
 ### 2. Frontend (Angular)
 
 - Create angular-frontend
+
 `ng new angular-frontend`
 - Navigate to folder
+
 `cd .\angular-frontend\`
+
 - Install dependencies
+
 `npm install`
 - (Optional) Install Bootstrap locally
+
 `npm install bootstrap@5.3.8`
+
 - Start the Angular development server
+
 `ng serve`
+
+<img width="1918" height="825" alt="Screenshot 2026-03-03 150746" src="https://github.com/user-attachments/assets/b300d147-6c31-4a3e-ab77-4d224789cb31" />
