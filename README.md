@@ -72,5 +72,8 @@ A modern, full-stack enterprise management application built with **Spring Boot*
 
 ---
 
+<img width="1811" height="879" alt="Screenshot 2026-07-20 153953" src="https://github.com/user-attachments/assets/b0bbe289-1455-4a0e-a8e8-daaabc279b5e" />
+
+
 ## 📝 License
 This project is open source under the [MIT License](LICENSE).
