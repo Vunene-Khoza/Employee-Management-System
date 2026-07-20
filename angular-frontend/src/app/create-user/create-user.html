@@ -1,0 +1,79 @@
+<h2 class="page-title">Create User</h2>
+
+<div class="col-md-5">
+  <div class="card shadow border-0 p-4">
+
+    @if (errorMessage) {
+      <div class="alert alert-danger">{{ errorMessage }}</div>
+    }
+    @if (successMessage) {
+      <div class="alert alert-success">{{ successMessage }}</div>
+    }
+
+    <div class="mb-3">
+      <label style="color: var(--univen-blue); font-weight: 500;">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        [(ngModel)]="email"
+        (blur)="validateEmail()"
+        [class.is-invalid]="emailError"
+        placeholder="user@univen.ac.za"
+      />
+      @if (emailError) {
+        <div class="invalid-feedback">{{ emailError }}</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label style="color: var(--univen-blue); font-weight: 500;">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        [(ngModel)]="password"
+        (blur)="validatePassword()"
+        [class.is-invalid]="passwordError"
+      />
+      @if (passwordError) {
+        <div class="invalid-feedback">{{ passwordError }}</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label style="color: var(--univen-blue); font-weight: 500;">Role</label>
+      <select class="form-control" [(ngModel)]="role">
+        <option value="EMPLOYEE">Employee</option>
+        <option value="SUPERVISOR">Supervisor</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label style="color: var(--univen-blue); font-weight: 500;">Department</label>
+      <select
+        class="form-control"
+        [(ngModel)]="departmentId"
+        (blur)="validateDepartment()"
+        [class.is-invalid]="departmentError"
+      >
+        <option value="0" disabled>-- Select a Department --</option>
+        <option *ngFor="let dept of departmentss" [value]="dept.id">
+          {{ dept.name }}
+        </option>
+      </select>
+      @if (departmentError) {
+        <div class="invalid-feedback">{{ departmentError }}</div>
+      }
+    </div>
+
+    <div class="d-flex gap-2">
+      <button
+        class="btn btn-univen-blue"
+        (click)="onSubmit()"
+        [disabled]="isLoading">
+        {{ isLoading ? 'Creating...' : 'Create User' }}
+      </button>
+      <button class="btn btn-secondary" (click)="goBack()">Cancel</button>
+    </div>
+
+  </div>
+</div>

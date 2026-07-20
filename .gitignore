@@ -1,0 +1,23 @@
+# Node dependencies & Angular build
+**/node_modules/
+**/dist/
+**/.angular/
+
+# Maven / Java build output
+**/target/
+**/.mvn/
+
+# IDE / Editor files
+**/.vscode/
+**/.idea/
+**/.settings/
+**/.classpath
+**/.project
+**/.factorypath
+
+# Logs and environment secrets
+*.log
+*.tmp
+hs_err_pid*
+replay_pid*
+.env*

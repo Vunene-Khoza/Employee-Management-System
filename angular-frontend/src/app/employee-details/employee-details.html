@@ -1,0 +1,70 @@
+<h3>Employee Details</h3>
+<div *ngIf="!isLoaded" class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<div class="card col-md-6 offset-md-3" *ngIf="isLoaded">
+    <div class="card-body p-0">
+        <!-- Profile Header -->
+        <div class="text-center p-4" style="background: linear-gradient(135deg, #082E67 0%, #1a4a8e 100%); color: white; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+            <img
+                [src]="employee.profilePicture || 'assets/placeholder.png'"
+                alt="Profile"
+                class="img-thumbnail shadow mb-3"
+                style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 4px solid rgba(255,255,255,0.2);"
+            />
+            <h4 class="mb-1">{{employee.firstName}} {{employee.lastName}}</h4>
+            <span class="badge bg-light text-dark shadow-sm">Employee ID: #{{employee.id}}</span>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="p-4">
+            <div class="row mb-3">
+                <div class="col-sm-4 fw-bold text-muted">Email Address</div>
+                <div class="col-sm-8" style="color: #082E67;">{{employee.emailId}}</div>
+            </div>
+            <div class="row mb-3 border-top pt-3">
+                <div class="col-sm-4 fw-bold text-muted">Phone Number</div>
+                <div class="col-sm-8" style="color: #082E67;">{{employee.phoneNumber}}</div>
+            </div>
+            <div class="row mb-3 border-top pt-3">
+                <div class="col-sm-4 fw-bold text-muted">Residential Address</div>
+                <div class="col-sm-8" style="color: #082E67;">{{employee.address}}</div>
+            </div>
+            <div class="row mb-3 border-top pt-3">
+                <div class="col-sm-4 fw-bold text-muted">Date of Birth</div>
+                <div class="col-sm-8" style="color: #082E67;">{{employee.dateOfBirth | date: 'dd MMM yyyy'}}</div>
+            </div>
+            
+            <div class="row mb-3 border-top pt-3" *ngIf="employee.field">
+                <div class="col-sm-4 fw-bold text-muted">Assigned Field</div>
+                <div class="col-sm-8" style="color: #082E67;">
+                    <span class="badge" style="background-color: var(--univen-gold); color: #1e3a8a;">
+                        <i class="bi bi-briefcase me-1"></i>{{employee.field}}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="row mb-3 border-top pt-3" *ngIf="employee.startDate">
+                <div class="col-sm-4 fw-bold text-muted">Start Date</div>
+                <div class="col-sm-8" style="color: #082E67;">
+                    <i class="bi bi-calendar-check me-2 text-success"></i>{{employee.startDate | date: 'dd MMM yyyy'}}
+                </div>
+            </div>
+
+            <div class="text-center mt-4 d-flex justify-content-center flex-wrap gap-2">
+                <button class="btn btn-secondary shadow-sm px-4" (click)="router.navigate(['/employees'])">
+                    <i class="bi bi-arrow-left me-2"></i>Back to List
+                </button>
+                <button class="btn btn-univen-excel shadow-sm px-4" (click)="downloadExcel()">
+                    <i class="bi bi-file-earmark-excel me-2"></i>Download Excel/CSV
+                </button>
+                <button class="btn btn-univen-pdf shadow-sm px-4" (click)="downloadPDF()">
+                    <i class="bi bi-file-earmark-pdf me-2"></i>Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

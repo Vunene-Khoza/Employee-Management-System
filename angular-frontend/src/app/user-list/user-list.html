@@ -1,0 +1,68 @@
+<h2 class="page-title">User Management</h2>
+
+<button class="btn btn-univen-blue mb-3" (click)="goToCreate()">
+  + Create User
+</button>
+
+<!-- Search Bar -->
+<div class="row mb-3 search-univen">
+  <div class="col-md-6">
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by email or role..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearch()"
+      />
+      <button class="btn btn-clear" (click)="clearSearch()" *ngIf="searchTerm">
+        Clear
+      </button>
+    </div>
+    <small class="text-muted" *ngIf="searchTerm">
+      Showing {{ filteredUsers.length }} of {{ users.length }} users
+    </small>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped table-univen">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Department</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="filteredUsers.length === 0 && searchTerm">
+      <td colspan="5" class="text-center">
+        No users match "{{ searchTerm }}"
+      </td>
+    </tr>
+    <tr *ngIf="filteredUsers.length === 0 && !searchTerm">
+      <td colspan="5" class="text-center">No users found</td>
+    </tr>
+    <tr *ngFor="let u of filteredUsers">
+      <td>{{ u.id }}</td>
+      <td>{{ u.email }}</td>
+      <td>
+        <span
+          class="badge"
+          [style.background-color]="
+            u.role === 'ADMIN' ? 'var(--univen-blue)' :
+            u.role === 'SUPERVISOR' ? 'var(--univen-gold)' :
+            'var(--univen-brown)'
+          ">
+          {{ u.role }}
+        </span>
+      </td>
+      <td>{{ getDepartmentName(u.departmentId) }}</td>
+      <td>
+        <button class="btn btn-sm btn-univen-gold me-1" (click)="updateUser(u.id)">Update</button><button class="btn btn-sm text-white" style="background-color: var(--univen-red);" (click)="deleteUser(u.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

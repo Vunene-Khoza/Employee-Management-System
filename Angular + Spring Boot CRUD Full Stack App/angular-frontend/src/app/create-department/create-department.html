@@ -1,0 +1,43 @@
+<h2 class="page-title">Create Department</h2>
+
+<div class="col-md-5">
+  <div class="card shadow border-0 p-4">
+
+    @if (errorMessage) {
+      <div class="alert alert-danger">{{ errorMessage }}</div>
+    }
+    @if (successMessage) {
+      <div class="alert alert-success">{{ successMessage }}</div>
+    }
+
+    <div class="mb-3">
+      <label style="color: var(--univen-blue); font-weight: 500;">
+        Department Name
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="name"
+        (blur)="validateName()"
+        [class.is-invalid]="nameError"
+        placeholder="e.g. RAW"
+      />
+      @if (nameError) {
+        <div class="invalid-feedback">{{ nameError }}</div>
+      }
+    </div>
+
+    <div class="d-flex gap-2">
+      <button
+        class="btn btn-univen-blue"
+        (click)="onSubmit()"
+        [disabled]="isLoading">
+        {{ isLoading ? 'Creating...' : 'Create Department' }}
+      </button>
+      <button class="btn btn-secondary" (click)="goBack()">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+</div>

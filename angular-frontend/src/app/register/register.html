@@ -1,0 +1,101 @@
+<!-- Falling Pattern Background -->
+<div class="falling-pattern-wrapper">
+  <div class="falling-lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+  <div class="falling-overlay"></div>
+</div>
+
+<!-- Page Content -->
+<div class="container mt-5" style="position: relative; z-index: 1;">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card shadow border-0 p-4" style="background: rgba(255,255,255,0.95); border-radius: 12px;">
+
+        <div class="text-center mb-3">
+          <h4 class="fw-bold" style="color: #082E67;">University of Venda</h4>
+          <small style="color: #B6963B;">Employee Management System</small>
+          <hr style="border-color: #B6963B;">
+        </div>
+
+        <h5 class="mb-3" style="color: #082E67;">Register</h5>
+
+        @if (errorMessage) {
+          <div class="alert alert-danger">{{ errorMessage }}</div>
+        }
+        @if (successMessage) {
+          <div class="alert alert-success">{{ successMessage }}</div>
+        }
+
+        <div class="mb-3">
+          <label style="color: #082E67; font-weight: 500;">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            [(ngModel)]="email"
+            (blur)="validateEmail()"
+            [class.is-invalid]="emailError"
+          />
+          @if (emailError) {
+            <div class="invalid-feedback">{{ emailError }}</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label style="color: #082E67; font-weight: 500;">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="password"
+            (blur)="validatePassword()"
+            [class.is-invalid]="passwordError"
+          />
+          @if (passwordError) {
+            <div class="invalid-feedback">{{ passwordError }}</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label style="color: #082E67; font-weight: 500;">Role</label>
+          <select class="form-control" [(ngModel)]="role">
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+          </select>
+        </div>
+
+        <button
+          class="btn w-100 text-white fw-bold"
+          style="background-color: #082E67; border: none;"
+          (click)="onRegister()"
+        >
+          Register
+        </button>
+
+        <p class="mt-3 text-center" style="font-size: 0.9rem;">
+          Already have an account?
+          <a routerLink="/login" style="color: #B6963B; font-weight: 600;">Login</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>

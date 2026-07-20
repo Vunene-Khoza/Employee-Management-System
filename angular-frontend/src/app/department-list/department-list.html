@@ -1,0 +1,77 @@
+<h2 class="page-title">Department Management</h2>
+
+<button class="btn btn-univen-blue mb-3" (click)="goToCreate()">
+  + Create Department
+</button>
+
+<table class="table table-bordered table-striped table-univen">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Department Name</th>
+      <th>Assigned Supervisor</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="departmentss.length === 0">
+      <td colspan="4" class="text-center">No departments found</td>
+    </tr>
+    <tr *ngFor="let dept of departmentss">
+      <td>{{ dept.id }}</td>
+      <td>{{ dept.name }}</td>
+      <td>{{ getSupervisorEmail(dept.supervisorId) }}</td>
+      <td>
+        <button
+          class="btn btn-sm btn-univen-view me-1"
+          (click)="createSupervisor(dept.id)">
+          Create Supervisor
+        </button>
+        <button
+          class="btn btn-sm btn-univen-gold me-1"
+          (click)="openAssignSupervisor(dept.id)"
+          data-bs-toggle="modal"
+          data-bs-target="#assignSupervisorModal">
+          {{ dept.supervisorId ? 'Reassign Supervisor' : 'Assign Supervisor' }}
+        </button>
+        <button
+          class="btn btn-sm btn-univen-red"
+          (click)="deleteDepartment(dept.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal fade" id="assignSupervisorModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: var(--univen-blue); color: white;">
+        <h5 class="modal-title">Assign Supervisor</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label style="color: var(--univen-blue); font-weight: 500;">Select Supervisor</label>
+          <select class="form-control" [(ngModel)]="selectedSupervisorId">
+            <option [ngValue]="0" disabled>-- Select a supervisor --</option>
+            <option *ngFor="let s of supervisors" [ngValue]="s.id">
+              {{ s.email }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+        <button
+          class="btn btn-univen-blue"
+          type="button"
+          data-bs-dismiss="modal"
+          (click)="assignSupervisor()">
+          Assign
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
